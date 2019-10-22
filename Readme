@@ -1,0 +1,29 @@
+0. generate new testdata
+	python python/random_data_gen.py test_data/data.in
+
+1. run verilog
+	vvp bin/small_t
+
+2. run python (for testing)
+	python python/small_t.py test_data/data.in out/python.out
+
+3. extract 2 less significant bit
+	python python/LS2B.py out/python.out out/python_LSB.out
+	python python/LS2B.py out/verilog.out out/verilog_LSB.out
+
+4. compare result
+	diff out/python.out out/verilog.out
+	diff out/python_LSB.out out/verilog_LSB.out
+
+
+
+
+
++. compile verilog
+	make
+
++. modify parameter t
+	vim src/merge_sort_4x_pipeline.v
+	(line 31)
+	vim python/small_t.py
+	(line 4)
